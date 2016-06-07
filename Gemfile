@@ -19,7 +19,10 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'faker'
+
 gem 'country_select'
+gem 'cloudinary'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'binding_of_caller'
