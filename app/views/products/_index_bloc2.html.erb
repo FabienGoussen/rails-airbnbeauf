@@ -1,0 +1,35 @@
+<div class="row">
+  <% @products.each do |product| %>
+  <div class="col-xs-8">
+    <div class="card" style="background-image: url('<%= image_path product.picture %>');">
+      <div class="card-category"><%= product.city %></div>
+      <div class="card-description">
+        <h2><%= product.name %></h2>
+        <p><%= product.description %></p>
+      </div>
+      <%= link_to "#", "products/#{product.id}.html", class: "card-link" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+    <div class="col-xs-4">
+      <div id="map" style="width: 100%; height: 300px;"></div>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript">
+        var myLatlng = new google.maps.LatLng(48.852937,2.364178);
+        var myOptions = {
+          zoom: 16,
+          center: myLatlng,
+          scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          styles: [] // TODO: replace [] by array from https://snazzymaps.com/
+        };
+        var map = new google.maps.Map(document.getElementById('map'), myOptions);
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: "You are here!"
+        });
+        </script>
+    </div>
+</div>

@@ -26,3 +26,15 @@
 .media-section:last-child {
   margin-bottom: 0;
 }
+
+html, body {
+    height:100%;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+#map {
+  position: fixed;
+}
