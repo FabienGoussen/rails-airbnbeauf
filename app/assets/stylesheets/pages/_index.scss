@@ -31,10 +31,19 @@ html, body {
     height:100%;
 }
 
-.container {
-  margin-top: 20px;
-}
-
 #map {
   position: fixed;
+}
+
+.container {
+   color: white;
+   background-color: #B15050;
+   border-radius: 14px; `
+   margin-top: 20px;`
+}
+
+#log_form {
+  text-align: center;
+  font-size: 1O0px;
+  color: blue;
 }
