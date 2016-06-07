@@ -1,2 +1,15 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+ <a>Ajouter une biere</a>
+
+  <h1><%= @product.name %></h1>
+
+          <%= image_tag @product.photo.url(:logo) %>
+
+        </div>
+        <div class="col-xs-12 col-sm-4">
+         <p class="btn btn-danger"> <%= link_to "Back to Index", products_path %></p> <br>
+        <%= link_to "Add dose", new_product_path(@product) %>
+        </div>
+      </div>
+    </div>
+</div>
+
