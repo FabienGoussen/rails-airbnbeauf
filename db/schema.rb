@@ -16,6 +16,21 @@ ActiveRecord::Schema.define(version: 20160607090325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "rating"
+    t.string   "validate"
+    t.text     "comment"
+    t.integer  "begin_date"
+    t.integer  "end_date"
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bookings", ["product_id"], name: "index_bookings_on_product_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -27,8 +42,9 @@ ActiveRecord::Schema.define(version: 20160607090325) do
     t.date     "begin_date"
     t.date     "end_date"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "profile_picture"
   end
 
   add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
@@ -46,6 +62,11 @@ ActiveRecord::Schema.define(version: 20160607090325) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age"
+    t.text     "message"
+    t.string   "phone_number"
     t.string   "provider"
     t.string   "token"
     t.datetime "token_expiry"
@@ -55,5 +76,7 @@ ActiveRecord::Schema.define(version: 20160607090325) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bookings", "products"
+  add_foreign_key "bookings", "users"
   add_foreign_key "products", "users"
 end
