@@ -16,16 +16,4 @@
     </div>
 </div>
 
-<% # Bloc n°2 %>
-
-<div class="container">
-  <div class="">
-<% @products.each do |p| %>
-<%= p.name %>
-<%end%>
-    <%= render 'index_bloc2' %>
-  </div>
-  <div class="">
-    <%= render 'index_bloc2' %>
-  </div>
-</div>
+<%= render 'index_bloc2' %>
