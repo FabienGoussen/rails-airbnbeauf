@@ -4,11 +4,6 @@ class BookingController < ApplicationController
 
     def index
       @booking = Booking.all
-      if params[:search]
-          @booking = Booking.search(params[:search]).order('created_at DESC')
-      else
-          @booking = Booking.all.order('created_at DESC')
-      end
     end
 
     def show
@@ -22,7 +17,7 @@ class BookingController < ApplicationController
     def create
       @booking = Booking.new(booking_params)
       if @booking.save
-          redirect_to product_path(@booking)
+          redirect_to product_path(product.id)
       else
           render :new
       end
@@ -30,10 +25,10 @@ class BookingController < ApplicationController
 
     def edit
     end
- ​
+
     def update
       if @booking.update(booking_params)
-        redirect_to product_path(@booking)
+        redirect_to product_path(product.id)
       else
         render :edit
       end
