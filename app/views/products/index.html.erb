@@ -2,10 +2,10 @@
     <div class="banner-content">
         <h1>AirBnBeauf ma gueule</h1>
         <h3>ou ess kon va keskon fé</h3>
-        <form action="#" class="form-inline">
-            <input type="text" class="form-control input-lg searchbar" placeholder="ou ess kon va">
-            <input type="text" class="form-control input-lg searchbar" placeholder="jariv">
-            <input type="text" class="form-control input-lg searchbar" placeholder="jpar">
+        <form action="" class="form-inline" method="GET">
+            <input name="city" type="text" class="form-control input-lg searchbar" placeholder="ou ess kon va">
+            <input name="begin_date" type="date" class="form-control input-lg searchbar" placeholder="jariv">
+            <input name="end_date" type="date" class="form-control input-lg searchbar" placeholder="jpar">
             <select name="" id="" class="form-control input-lg searchbar">
                 <option value="1">1 kop1</option>
                 <option value="2">2 kop1</option>
@@ -16,4 +16,38 @@
     </div>
 </div>
 
-<%= render 'index_bloc2' %>
+<div class="row">
+  <div class="col-xs12 col-md-offset-2 col-md-6">
+  <% @products.each do |product| %>
+    <div class="card" style="background-image: url('<%= image_path product.picture %>');">
+      <div class="card-category"><%= product.city %></div>
+      <div class="card-description">
+        <h2><%= product.name %></h2>
+        <p><%= product.description %></p>
+      </div>
+      <%= link_to "Voir plus", "products/#{product.id}.html", class: "card-link" %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-offset-8 col-xs-4">
+    <div id="map" style="width: 100%; height: 300px;"></div>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+      <script type="text/javascript">
+      var myLatlng = new google.maps.LatLng(48.852937,2.364178);
+      var myOptions = {
+        zoom: 16,
+        center: myLatlng,
+        scrollwheel: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [] // TODO: replace [] by array from https://snazzymaps.com/
+      };
+      var map = new google.maps.Map(document.getElementById('map'), myOptions);
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: "tu es la wesh!"
+      });
+      </script>
+  </div>
+</div>

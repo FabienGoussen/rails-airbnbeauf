@@ -3,12 +3,8 @@ class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
-        @products = Product.all
-        if params[:search]
-            @products = Product.search(params[:search]).order('created_at DESC')
-        else
-            @products = Product.all.order('created_at DESC')
-        end
+      @products = Product.all.order('created_at DESC')
+      @products = @products.search(params[:city]) if params[:city].present?
     end
 
     def show
@@ -54,5 +50,9 @@ class ProductsController < ApplicationController
   #   ​
     def set_product
         @product = Product.find(params[:id])
+    end
+
+    def filtering_params(params)
+      params.slice(:city, :begin_date, :end_date)
     end
   end
