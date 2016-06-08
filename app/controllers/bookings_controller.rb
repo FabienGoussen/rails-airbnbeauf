@@ -33,7 +33,7 @@ class BookingController < ApplicationController
         render :edit
       end
     end
-    ​
+
     def destroy
       @booking.destroy
       redirect_to products_path
