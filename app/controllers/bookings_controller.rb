@@ -7,7 +7,7 @@ class BookingController < ApplicationController
     end
 
     def show
-      #par rapport à la recherche
+      #par rapport la recherche
     end
 
     def new
@@ -40,11 +40,11 @@ class BookingController < ApplicationController
     end
 
     private
-    ​
+
     def booking_params
       params.require(:booking).permit(:first_name, :address, :last_name, :begin_date, :end_date)
     end
-   ​
+
     def set_booking
       @booking = Booking.find(params[:id])
     end
