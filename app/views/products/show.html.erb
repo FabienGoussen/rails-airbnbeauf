@@ -1,16 +1,29 @@
+<div style="background: url(<%= @product.picture.url %>) no-repeat center fixed; background-size: cover" class="banner_show">
+</div>
+
 <div class="contenaire">
-  <div class="col-xs12 col-md-offset-3 col-md-6">
-  <h1><%= @product.name %></h1>
-    <%= image_tag @product.picture.url(:bright_face) %>
+  <div class="col-xs12 col-md-offset-1 col-md-4 margin_top">
+    <h1><%= @product.name %></h1>
     <p> date begin : <%= @product.begin_date %> - date end : <%= @product.end_date %> </p>
     <p> <%= @product.description %> </p>
     <p> <%= @product.price %> € </p>
     <p> <%= @product.address %> </p>
     <p> <%= @product.city %> </p>
     <p> <%= @product.country %> </p>
-    <%= link_to "Change la karavan", edit_product_path %>
-
+    <%= link_to "Change la karavan", edit_product_path, class:"btn btn-primary btn-block"%>
   </div>
+
+    <div class="col-xs12 col-md-offset-2 col-md-4 wrapper_show_booking margin_top">
+      <h1><%= @product.name %></h1>
+      <p> date begin : <%= @product.begin_date %> - date end : <%= @product.end_date %> </p>
+      <p> <%= @product.description %> </p>
+      <p> <%= @product.price %> € </p>
+      <p> <%= @product.address %> </p>
+      <p> <%= @product.city %> </p>
+      <p> <%= @product.country %> </p>
+      <%= link_to "Je Garde la karavan", edit_product_path, class:"btn btn-danger btn-block"%>
+    </div>
+
 </div>
 
 
