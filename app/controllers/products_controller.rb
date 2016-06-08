@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
     def index
       @products = Product.all.order('created_at DESC')
-      @products = @products.search(params[:city]) if params[:city].present?
+      @products = @products.city_search(params[:city]).begin_date_search(params[:end_date]).end_date_search(params[:begin_date]) if params[:city].present? || params[:end_date].present? || params[:begin_date].present?
     end
 
     def show
