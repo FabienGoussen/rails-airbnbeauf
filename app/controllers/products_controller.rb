@@ -1,11 +1,20 @@
 class ProductsController < ApplicationController
     skip_before_action :authenticate_user!, only: :index
     before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+ 
+     # geocoded_by :address
+     # after_validation :geocode, if: :address_changed?
+ 
     def index
       @products = Product.all.order('created_at DESC')
       @products = @products.city_search(params[:city]).begin_date_search(params[:end_date]).end_date_search(params[:begin_date]) if params[:city].present? || params[:end_date].present? || params[:begin_date].present?
+       @markers = Gmaps4rails.build_markers(@products) do |flat, marker|
+      marker.lat flat.latitude
+      marker.lng flat.longitude
     end
+    end
+   
+ 
 
     def show
       #par rapport à la recherche
