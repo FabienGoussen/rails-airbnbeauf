@@ -5,9 +5,9 @@
 
       <%= f.input :name %>
       <%= f.input :description %>
-      <%= f.input :address %>
-      <%= f.input :city %>
-      <%= f.input :country, priority: [ "France" ], collection: [ "Andorra", "Austria", "Belgium", "Croatia", "Bulgaria", "Denmark", "France", "Finland", "Germany", "Hungary", "Italy", "Ireland", "Liechtenstein", "Luxembourg", "Poland", "Portugal", "Slovenia", "Slovakia", "Spain", "Ukraine", "United Kingdom"] %>
+      <%= f.input :address, input_html: {id: "user_input_autocomplete_address"} %>
+      <%= f.input :city, input_html: {id: "locality"} %>
+      <%= f.input :country, input_html: {id: "country"}, priority: [ "France" ], collection: [ "Andorra", "Austria", "Belgium", "Croatia", "Bulgaria", "Denmark", "France", "Finland", "Germany", "Hungary", "Italy", "Ireland", "Liechtenstein", "Luxembourg", "Poland", "Portugal", "Slovenia", "Slovakia", "Spain", "Ukraine", "United Kingdom"] %>
       <%= f.input :price %>
       <%= f.input :begin_date %>
       <%= f.input :end_date %>
@@ -20,7 +20,7 @@
   </div>
 </div>
 
-<form>
+<!-- <form>
   <label>Address</label>
   <input id="user_input_autocomplete_address" placeholder="Votre adresse...">
   <label>street_number</label>
@@ -31,4 +31,8 @@
   <input id="locality" name="locality" disabled>
   <label>country</label>
   <input id="country" name="country" disabled>
-</form>
+</form> -->
+
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAqYb2src013gOkidDeBW0W_x-Edg-n-Ow">
+</script>
