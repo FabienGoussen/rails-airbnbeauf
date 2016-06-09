@@ -16,19 +16,24 @@
     </div>
 </div>
 
+
+<br>
 <div class="row">
-  <div class="col-xs12 col-md-offset-2 col-md-6">
   <% @products.each do |product| %>
-    <div class="card" style="background-image: url('<%= image_path product.picture %>');">
-      <div class="card-category"><%= product.city %></div>
-      <div class="card-description">
-        <h2><%= product.name %></h2>
-        <p><%= product.description %></p>
-      </div>
-      <%= link_to "Voir plus", "products/#{product.id}.html", class: "card-link" %>
+    <div class="col-xs-3 col-xs-offset-1">
+    <div class="card-img-top" style="background: url('<%= image_path product.picture %>') no-repeat center center;background-size:cover;">
+    <div class="img-hover"></div>
+    <p class="title-card"><%= product.city %></p>
+    <p class="product-name"><%= product.name %></p>
     </div>
-    <% end %>
-  </div>
+    <p class="product-description"><%= product.description %></p>
+ 
+      <%= link_to "Voir plus", "products/#{product.id}.html", class: "btn btn-default", id: "btn-voir" %>
+        </div>
+
+<% end %>
+</div>
+<br>
 
   <div class="col-md-12 col-xs-12">
     <div id="map" style="width: 100%; height: 600px;"></div>
@@ -42,7 +47,14 @@
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
       });
-    })
+      $(".card-img-top").hover(function(){
+      $(this).find(".img-hover").css('display', 'block');
+      console.log("putin");
+      }, function() {
+       $(this).find(".img-hover").css('display', 'none');
+      });
+    });
   <% end %>
 <% end %>
+</div>
 </div>
