@@ -14,16 +14,11 @@
   </div>
 
     <div class="col-xs12 col-md-offset-2 col-md-4 wrapper_show_booking margin_top">
-      <h1><%= @product.name %></h1>
-      <p> date begin : <%= @product.begin_date %> - date end : <%= @product.end_date %> </p>
-      <p> <%= @product.description %> </p>
-      <p> <%= @product.price %> € </p>
-      <p> <%= @product.address %> </p>
-      <p> <%= @product.city %> </p>
-      <p> <%= @product.country %> </p>
-      <%= link_to "Je Garde la karavan", edit_product_path, class:"btn btn-danger btn-block"%>
+      <form action="" class="form-inline" method="GET">
+        <input name="begin_date" type="date" class="form-control input-lg searchbar" placeholder="jariv">
+        <input name="end_date" type="date" class="form-control input-lg searchbar" placeholder="jpar">
+      </form>
+      <%= link_to "Je Garde la karavan", book_product_path, class:"btn btn-danger btn-block"%>
     </div>
 
 </div>
-
-

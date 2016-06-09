@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :products
+  resources :bookings
+  get "products/:id/book", to: "products#book_product", as: "book_product"
+  get "products/:id/success", to: "products#book_success", as: "book_success"
   resources :products do
     collection do
       get 'search/:q', :action => 'search', :as => 'search'

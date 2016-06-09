@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
     skip_before_action :authenticate_user!, only: :index
-    before_action :set_product, only: [:show, :edit, :update, :destroy]
+    before_action :set_product, only: [:show, :edit, :update, :destroy, :book_product]
 
      # geocoded_by :address
      # after_validation :geocode, if: :address_changed?
@@ -50,21 +50,19 @@ class ProductsController < ApplicationController
   end
 
   def book_product
-   if @product.bookings.where("begin_date < ? AND end_date > ?, params[:begin_date], params[:end_date]").validate = "no"
-     alert("Already booked")
+   if @product.bookings.where("begin_date < ? AND end_date > ? AND validate = 'false'", params[:begin_date], params[:end_date])
+     render :show
    else
      Booking.create!(product_id: @product.id, user_id: current_user.id, begin_date: params[:begin_date], end_date: params[:end_date])
+     redirect_to book_success_path(@product)
    end
-   # start_date = params[:start_date].to_date.beginning_of_day
-   # end_date = params[:end_date].to_date.end_of_day
-   # records = Campaign.where(:created_at => start_date..end_date)
   end
 
     private
   #
   #   ​
     def product_params
-      params.require(:product).permit(:name, :address, :city, :country, :price, :begin_date, :end_date,:picture, :picture_cache)
+      params.require(:product).permit(:name, :description, :address, :city, :country, :price, :begin_date, :end_date,:picture, :picture_cache)
     end
   #   ​
     def set_product

@@ -15,13 +15,17 @@ class BookingController < ApplicationController
     end
 
     def create
-      @booking = Booking.new(booking_params)
-      if @booking.save
-          redirect_to product_path(product.id)
-      else
-          render :new
+    @booking = Booking.new(params[booking_params])
+    if @booking.save
+      redirect_to new_booking_path
+    else
+      err = ''
+      @booking.errors.full_messages.each do |m|
+        err << m
       end
+    redirect_to new_booking_path, :flash => { :alert => "#{err}, please try again" }
     end
+  end
 
     def edit
     end
@@ -42,7 +46,7 @@ class BookingController < ApplicationController
     private
 
     def booking_params
-      params.require(:booking).permit(:first_name, :address, :last_name, :begin_date, :end_date)
+      params.require(:booking).permit(:product_id, :user_id, :begin_date, :end_date)
     end
 
     def set_booking
