@@ -23,6 +23,7 @@ gem 'faker'
 gem 'country_select'
 gem 'cloudinary'
 gem 'carrierwave'
+gem 'geocoder'
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -31,7 +32,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
-  gem 'geocoder'
 gem "coffee-rails"
 gem "gmaps4rails"
 
