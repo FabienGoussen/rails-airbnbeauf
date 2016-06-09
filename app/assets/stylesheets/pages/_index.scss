@@ -61,3 +61,62 @@ html, body {
 .padding_top {
   padding-top: 10px;
 }
+
+.card-img-top {
+  // background-repeat:no-repeat;
+  // background-size: 100%;
+ position: relative;
+   height: 400px;
+   margin: 20px;
+   border-style: solid;
+   border-color: pink;
+   border-width: 10px;
+   border-radius: 10px;
+ }
+
+.img-hover {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: none;
+  background-image: linear-gradient(top, rgba(255,0,132,0.09) 23%,rgba(255,0,132,0.09) 24%,rgba(255,0,132,0.2) 31%,rgba(255,0,132,0.34) 40%,rgba(255,0,132,0.79) 69%,rgba(255,0,132,1) 83%);
+}
+
+.title-card {
+   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #F1D72A;
+   font-size: 2em;
+}
+
+.product-name {
+  margin-top: 60px;
+ font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+ font-weight: bold;
+ text-align: center;
+  color: #F1D72A;
+   font-size: 1.8em;
+}
+
+.product-description {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 30px;
+  color: pink;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-right: 20px;
+   font-size: 20px;
+ }
+
+ #btn-voir {
+  background-color: pink;
+  margin-left: 20px;
+  border-radius: 7px;
+  color: white;
+  font-weight: bold;
+ }
+
+ body {
+  background-color: #2E2F3C;
+ }

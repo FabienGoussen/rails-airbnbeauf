@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
 
   def book_product
    if @product.bookings.where("begin_date < ? AND end_date > ?, params[:begin_date], params[:end_date]").validate = "no"
-     alert("Already booked")
+     # alert("Already booked")
    else
      Booking.create!(product_id: @product.id, user_id: current_user.id, begin_date: params[:begin_date], end_date: params[:end_date])
    end
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   #
   #   ​
     def product_params
-      params.require(:product).permit(:name, :address, :city, :country, :price, :begin_date, :end_date,:picture, :picture_cache)
+      params.require(:product).permit(:name, :address, :city, :country, :price, :begin_date, :end_date,:picture, :picture_cache, :description)
     end
   #   ​
     def set_product
