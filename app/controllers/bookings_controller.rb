@@ -1,4 +1,4 @@
-class BookingController < ApplicationController
+class BookingsController < ApplicationController
     skip_before_action :authenticate_user!, only: :index
     before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
@@ -15,12 +15,8 @@ class BookingController < ApplicationController
     end
 
     def create
-      @booking = Booking.new(booking_params)
-      if @booking.save
-          redirect_to product_path(product.id)
-      else
-          render :new
-      end
+      @booking = current_user.bookings.create(booking_params)
+		  redirect_to @booking.product, notice: "Bien ouéj gro"
     end
 
     def edit
@@ -39,6 +35,26 @@ class BookingController < ApplicationController
       redirect_to products_path
     end
 
+    def preload
+  		product = Product.find(params[:product_id])
+  		today = Date.today
+  		bookings = product.bookings.where("begin_date >= ? OR end_date >= ?", today, today)
+      render json: bookings
+	   end
+
+     def preview
+    	begin_date = Date.parse(params[:begin_date])
+    	end_date = Date.parse(params[:end_date])
+
+    	output = {
+    		conflict: is_conflict(begin_date, end_date)
+    	}
+
+    	render json: output
+    end
+
+
+
     private
 
     def booking_params
@@ -48,4 +64,11 @@ class BookingController < ApplicationController
     def set_booking
       @booking = Booking.find(params[:id])
     end
+
+    def is_conflict(begin_date, end_date)
+   		product = Product.find(params[:product_id])
+
+   		check = product.bookings.where("? < begin_date AND end_date < ?", begin_date, end_date)
+   		check.size > 0? true : false
+   	end
   end

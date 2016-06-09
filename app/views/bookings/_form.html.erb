@@ -1,0 +1,139 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<%= form_for([@product, @product.bookings.new]) do |f| %>
+
+		<div class="col-md-12 price_tag">
+			<span>$<%= @product.price %></span>
+			<span class="pull-right">Per Night</span>
+		</div>
+
+		<div class="col-xs-6 col-md-6 space-1">
+			<label>Check in</label>
+			<%= f.text_field :begin_date, readonly: true, placeholder: "dd-mm-yy", class: "form-control" %>
+		</div>
+
+		<div class="col-xs-6 col-md-6 space">
+			<label>Check out</label>
+			<%= f.text_field :end_date, readonly: true, placeholder: "dd-mm-yy", disabled: true, class: "form-control" %>
+		</div>
+
+		  <%= f.hidden_field :product_id, value: @product.id %>
+			<%= f.hidden_field :price, value: @product.price %>
+			<%= f.hidden_field :total, id: "booking_total" %>
+
+	<h4><span id="message"></span></h4>
+		<div id="preview", style="display: none">
+			<table class="booking-table">
+			  <tbody>
+			    <tr>
+			      <td>Day(s)</td>
+			      <td><span id="booking_days"></span></td>
+			    </tr>
+			    <tr>
+			      <td>Total</td>
+			      <td>$<span id="booking_sum"></span></td>
+			    </tr>
+			  </tbody>
+			</table>
+		   <br>
+		</div>
+
+			<%= f.submit "Book now", id: 'btn_book', class: "btn btn-primary", disabled: true %>
+		<% end %>
+	</div>
+</div>
+
+
+		<script>
+	function unavailable(date) {
+		dmy = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+		return [$.inArray(dmy, unavailableDates) == -1];
+	}
+	$(function() {
+		unavailableDates = [];
+		$.ajax({
+			url: '/preload',
+			data: {'product_id': <%= @product.id %>},
+			dataType: 'json',
+			success: function(data) {
+				$.each(data, function(arrID, arrValue) {
+					for(var d = new Date(arrValue.begin_date); d <= new Date(arrValue.end_date); d.setDate(d.getDate() + 1)) {
+						unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
+					}
+				});
+				$('#booking_begin_date').datepicker({
+					dateFormat: 'dd-mm-yy',
+					minDate: 0,
+					maxDate: '9m',
+					beforeShowDay: unavailable,
+					onSelect: function(selected) {
+						$('#booking_end_date').datepicker("option", "minDate", selected);
+						$('#booking_end_date').attr('disabled', false);
+						var begin_date = $(this).datepicker('getDate');
+						var end_date = $('#booking_end_date').datepicker('getDate');
+						var days = (end_date - begin_date)/1000/60/60/24 + 1
+						var input = {
+							'begin_date': begin_date,
+							'end_date': end_date,
+							'product_id': <%= @product.id %>
+						}
+						$.ajax({
+							url: "/preview",
+							data: input,
+							success: function(data) {
+								if (data.conflict) {
+									$('#message').text("This date range is not available.");
+									$('#preview').hide();
+									$('#btn_book').attr('disabled', true);
+								} else {
+									$('#preview').show();
+									$('#btn_book').attr('disabled', false);
+									var total = days * <%= @product.price %>
+									$('#booking_days').text(days);
+									$('#booking_sum').text(total);
+									$('#booking_total').val(total);
+								}
+							}
+						});
+					}
+				});
+				$('#booking_end_date').datepicker({
+					dateFormat: 'dd-mm-yy',
+					minDate: 0,
+					maxDate: '9m',
+					beforeShowDay: unavailable,
+					onSelect: function(selected) {
+						$('#booking_begin_date').datepicker("option", "maxDate", selected);
+						var begin_date = $('#booking_begin_date').datepicker('getDate');
+						var end_date = $(this).datepicker('getDate');
+						var days = (end_date - begin_date)/1000/60/60/24 + 1
+						var input = {
+							'begin_date': begin_date,
+							'end_date': end_date,
+							'product_id': <%= @product.id %>
+						}
+						$.ajax({
+							url: "/preview",
+							data: input,
+							success: function(data) {
+								if (data.conflict) {
+									$('#message').text("Those dates are not available");
+									$('#preview').hide();
+									$('#btn_book').attr('disabled', true);
+								} else {
+									$('#preview').show();
+									$('#btn_book').attr('disabled', false);
+									var total = days * <%= @product.price %>
+									$('#booking_days').text(days);
+									$('#booking_sum').text(total);
+									$('#booking_total').val(total);
+								}
+							}
+						});
+					}
+				});
+			}
+		});
+
+	});
+</script>

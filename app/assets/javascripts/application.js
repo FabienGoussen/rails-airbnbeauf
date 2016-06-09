@@ -6,6 +6,7 @@
 
 //= require underscore
 //= require gmaps/google
+//= require jquery.ui.datepicker
 
 function initializeAutocomplete(id) {
   var element = document.getElementById(id);

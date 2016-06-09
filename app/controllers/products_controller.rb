@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
 
 
   def show
-    #par rapport à la recherche
+    @booked = Booking.where("product_id = ? AND user_id = ?", @product.id, current_user.id).present?  if current_user
   end
 
   def new
