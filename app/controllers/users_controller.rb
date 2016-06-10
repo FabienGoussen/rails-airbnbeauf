@@ -14,7 +14,7 @@ before_action :set_user, only: [ :update, :new]
   end
 
 private
-   ​
+
   def user_params
     params.require(:user).permit(:name, :address, :city, :country, :price, :picture, :picture_cache)
   end
