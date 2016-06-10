@@ -10,7 +10,7 @@
     <p> <%= @product.address %> </p>
     <p> <%= @product.city %> </p>
     <p> <%= @product.country %> </p>
-    <%= link_to "Change la karavan", edit_product_path, class:"btn btn-primary btn-block"%>
+    <%= link_to "Change la karavan", edit_product_path(@product), class:"btn btn-primary btn-block"%>
   </div>
 
     <div class="col-xs12 col-md-offset-2 col-md-4 wrapper_show_booking margin_top">
@@ -21,19 +21,21 @@
       <p> <%= @product.address %> </p>
       <p> <%= @product.city %> </p>
       <p> <%= @product.country %> </p>
-      <%= link_to "Je Garde la karavan", edit_product_path, class:"btn btn-danger btn-block"%>
+      <%= link_to "Je Garde la karavan", edit_product_path(@product), class:"btn btn-danger btn-block"%>
     </div>
-
-    <div id="reviews">
-      <% if @product.reviews.blank? %>
-        Be the first to leave a review for <%= @product.name %>
-      <% else %>
-        <% @product.reviews.each do |review| %>
-          <%= render 'reviews/show', review: review %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
 
 </div>
+
+<br>
+<br>
+<div id="reviews">
+  <% if @product.reviews.blank? %>
+    Be the first to leave a review for <%= @product.name %>
+  <% else %>
+    <% @product.reviews.each do |review| %>
+      <%= render 'reviews/show', review: review %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render 'reviews/form', restaurant: @restaurant, review: @review %>
