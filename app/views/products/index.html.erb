@@ -30,7 +30,7 @@
     </div>
   <div class="card-block">
     <p class="card-title"><%= product.description %></p>
-    <p class="card-text"><%= link_to "Voir plus", "products/#{product.id}.html", class: "btn btn-default", id: "btn-voir" %></p>
+    <p class="card-text"><%= link_to "Voir plus", product_path(product), class: "btn btn-default", id: "btn-voir" %></p>
     </div>
   </div>
 

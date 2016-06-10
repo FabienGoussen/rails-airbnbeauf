@@ -1,4 +1,4 @@
-class BookingController < ApplicationController
+class BookingsController < ApplicationController
     skip_before_action :authenticate_user!, only: :index
     before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
