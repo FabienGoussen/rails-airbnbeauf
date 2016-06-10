@@ -3,41 +3,41 @@ class BookingController < ApplicationController
     before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
     def index
-      @bookings = Booking.all
-    end
-
-    def show
-      #par rapport la recherche
+      @bookings = @product.bookings
     end
 
     def new
-      @booking = Booking.new
+      @booking = @product.bookings.build
     end
 
     def create
-      @booking = Booking.new(booking_params)
+      @booking = @product.bookings.build booking_params
       if @booking.save
-          redirect_to product_path(product.id)
+        'success'
       else
-          render :new
+        'fail'
       end
     end
 
-    def edit
-    end
-
-    def update
-      if @booking.update(booking_params)
-        redirect_to product_path(product.id)
-      else
-        render :edit
-      end
-    end
-
-    def destroy
-      @booking.destroy
-      redirect_to products_path
-    end
+    # def show
+    #   #par rapport la recherche
+    # end
+    #
+    # def edit
+    # end
+    #
+    # def update
+    #   if @booking.update(booking_params)
+    #     redxirect_to product_path(product.id)
+    #   else
+    #     render :edit
+    #   end
+    # end
+    #
+    # def destroy
+    #   @booking.destroy
+    #   redirect_to products_path
+    # end
 
     private
 

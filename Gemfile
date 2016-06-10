@@ -19,6 +19,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'faker'
+gem 'simple_calendar'
 
 gem 'country_select'
 gem 'cloudinary'

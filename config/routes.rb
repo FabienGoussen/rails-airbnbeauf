@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   resources :products
   resources :products do
-    collection do
-      get 'search/:q', :action => 'search', :as => 'search'
+    resources :bookings
     end
-end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'products#index'
