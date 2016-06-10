@@ -5,7 +5,6 @@
 // app/assets/javascripts/application.js
 
 //= require underscore
-//= require gmaps/google
 
 function initializeAutocomplete(id) {
   var element = document.getElementById(id);
