@@ -34,6 +34,20 @@
   <% end %>
 </div>
 <br>
+<div class="column">
+  <% if current_user %>
+    <% if current_user.bookings.any? %>
+      <h4>Your bookings: </h4>
+        <% current_user.bookings.each do |booking| %>
+          <h5>Price: $<%= booking.price %><br>
+            <%= booking.date %></h5>
+          <% end %>
+          <% else %>
+          <h4>You have no bookings</h4>
+        <% end %>
+    <% else %>
+  <h4>You are not logged in</h4>
+  <% end %>
 <div class="row">
   <div class="col-md-12 col-xs-12">
     <div id="map" style="width: 100%; height: 600px;"></div>
