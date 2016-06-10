@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
 
 
   def show
-    #par rapport à la recherche
+    @review = Review.new  # <-- You need this now.
   end
 
   def new

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :products do
      resources :bookings
+     resources :reviews, only: :create
     collection do
 
       get 'search/:q', :action => 'search', :as => 'search'
@@ -9,7 +10,7 @@ end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'products#index'
- 
+
 #   resources :products do
 #   resources :bookings
 # end
