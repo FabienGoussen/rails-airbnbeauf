@@ -24,6 +24,13 @@ gem 'country_select'
 gem 'cloudinary'
 gem 'carrierwave'
 gem 'geocoder'
+gem "coffee-rails"
+gem "gmaps4rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
+
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -32,12 +39,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
-gem "coffee-rails"
-gem "gmaps4rails"
 
-source 'https://rails-assets.org' do
-  gem "rails-assets-underscore"
-end
 
 end
 
