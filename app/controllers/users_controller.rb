@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-before_action :set_user, only: [ :update]
+before_action :set_user, only: [ :update, :new]
+
+  def new
+    @user = User.new
+  end
 
   def update
       if @user.update(user_params)
