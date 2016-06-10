@@ -1,6 +1,14 @@
 @import "home";
 @import "productshow";
 
+.background-image {
+      background: url('29.jpg') no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
 .media {
   display: flex;
 }
@@ -37,8 +45,8 @@ html, body {
 }
 
 .container {
-   color: white;
-   // background-color: #CECFC7;
+   color: black;
+   background-color: #CECFC7;
    border-radius: 14px;
    margin: 20px;
 }
@@ -51,7 +59,7 @@ html, body {
 
 .wrapper_show_booking {
   background-color: #D8D5DB;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
 }
 
@@ -69,8 +77,13 @@ html, body {
    height: 400px;
    margin: 20px;
    border-style: solid;
-   border-color: #E0A1A1;
-   border-width: 10px;
+   border-color: #FF00C0;
+   // border-left-color: blue;
+   // border-right-color: red;
+   // border-bottom-color: white;
+   //  border-top-color: white;
+    border-color: pink;
+   border-width: 4px;
    border-radius: 10px;
  }
 
@@ -107,10 +120,6 @@ html, body {
   color: white;
   font-weight: bold;
  }
-
-  body {
-    background-color: green;
-  }
 
 .card-block {
   height: 20em;
