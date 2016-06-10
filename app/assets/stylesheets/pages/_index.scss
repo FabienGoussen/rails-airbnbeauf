@@ -99,15 +99,6 @@ html, body {
    font-size: 1.8em;
 }
 
-.product-description {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  margin-top: 30px;
-  color: #E0A1A1;
-  font-weight: bold;
-  margin-left: 20px;
-  margin-right: 20px;
-   font-size: 20px;
- }
 
  #btn-voir {
   background-color: #E0A1A1;
@@ -117,6 +108,20 @@ html, body {
   font-weight: bold;
  }
 
- body {
-  background-color: #B2ABBF;
- }
+  body {
+    background-color: green;
+  }
+
+.card-block {
+  height: 20em;
+}
+
+.card-title{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 30px;
+  color: pink;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-right: 20px;
+   font-size: 20px;
+}
