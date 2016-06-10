@@ -2,7 +2,7 @@
 @import "productshow";
 
 .background-image {
-      background: url('29.jpg') no-repeat center center fixed;
+      background: image-url('29.jpg') no-repeat center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -46,7 +46,6 @@ html, body {
 
 .container {
    color: black;
-   background-color: #CECFC7;
    border-radius: 14px;
    margin: 20px;
 }
@@ -61,6 +60,12 @@ html, body {
   background-color: #D8D5DB;
   padding: 5px;
   border-radius: 5px;
+}
+
+.wrapper_index {
+  background: rgba(0, 0, 0, 0.30);
+  padding: 20px;
+  width: 100%;
 }
 
 .margin_top {
