@@ -46,7 +46,6 @@ html, body {
 
 .container {
    color: black;
-   background-color: #CECFC7;
    border-radius: 14px;
    margin: 20px;
 }
@@ -61,6 +60,12 @@ html, body {
   background-color: #D8D5DB;
   padding: 5px;
   border-radius: 5px;
+}
+
+.wrapper_index {
+  opacity: 0.6;
+  background-color: #D8D5DB;
+  background-size: cover;
 }
 
 .margin_top {
