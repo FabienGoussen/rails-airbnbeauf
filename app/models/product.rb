@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   belongs_to :user
   has_many :users, through: :bookings
   has_many :bookings
+  has_many :reviews, dependent: :destroy
 
   def self.city_search(search)
     where("city LIKE ?", "%#{search}%")
