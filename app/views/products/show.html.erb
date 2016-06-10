@@ -24,6 +24,16 @@
       <%= link_to "Je Garde la karavan", edit_product_path, class:"btn btn-danger btn-block"%>
     </div>
 
+    <div id="reviews">
+      <% if @product.reviews.blank? %>
+        Be the first to leave a review for <%= @product.name %>
+      <% else %>
+        <% @product.reviews.each do |review| %>
+          <%= render 'reviews/show', review: review %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
+
 </div>
-
-
