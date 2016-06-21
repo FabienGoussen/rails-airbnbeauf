@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
 
     def index
       @bookings = Booking.all
+      @bookings = @product.bookings.all
     end
 
     def show
@@ -12,10 +13,12 @@ class BookingsController < ApplicationController
 
     def new
       @booking = Booking.new
+      # @booking = @product.bookings.new
     end
 
     def create
       @booking = Booking.new(booking_params)
+       @booking = @product.bookings.new(booking_params)
       if @booking.save
           redirect_to product_path(product.id)
       else
@@ -36,16 +39,19 @@ class BookingsController < ApplicationController
 
     def destroy
       @booking.destroy
-      redirect_to products_path
+      redirect_to product_path
     end
 
     private
 
     def booking_params
-      params.require(:booking).permit(:first_name, :address, :last_name, :begin_date, :end_date)
+      params.require(:booking).permit(:begin_date, :end_date)
     end
+def set_booking
+   @booking = Booking.find(params[:id])
 
-    def set_booking
-      @booking = Booking.find(params[:id])
+end
+    def load_product
+      @product = Product.find(params[:product_id])
     end
   end
